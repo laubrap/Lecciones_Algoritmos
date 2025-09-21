@@ -3,4 +3,5 @@ project(Ejercicio1_2_1_10)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Ejercicio1_2_1_10 main.cpp)
+add_executable(Ejercicio1_2_1_10 main.cpp
+        main.h)

@@ -1,9 +1,25 @@
 #include <iostream>
 using namespace std;
 
-#define PI 3.1415
+/*Se ingresa un conjunto de valores numéricos enteros que finaliza con la llegada de
+un 0 (cero), se pide informar:
+1. Cuántas veces se ingresaron valores consecutivos ascendentes. A esto, en
+adelante, lo llamaremos seguidilla.
+2. Por cada seguidilla, qué cantidad de elementos la componen.
+3. En qué posición relativa aparece la seguidilla más larga.*/
+
 
 int main() {
+    int num,cantidadNumerosSeguidilla;
 
+    cout << "ingrese un numero: " << endl;
+    cin >> num;
+
+    while (num!=0) {
+
+
+        cout << "ingrese un numero: " << endl;
+        cin >> num;
+    }
 
 }

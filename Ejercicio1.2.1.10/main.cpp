@@ -1,58 +1,12 @@
 #include <iostream>
 #include <cmath>
+#include "main.h"
+
 using namespace std;
 
 /*Entre dos fechas indicadas por el usuario, informar cuál es la más cercana a la actual.
 Se debe considerar los años bisiestos, entendiendo que un año es bisiesto si es
 divisible por 4, o   por 400 pero no por 100.*/
-
-bool esBisiesto(int anio) {
-    return (anio % 400 == 0) || ((anio % 4 == 0) && (anio % 100 != 0));
-}
-
-int diasAnteriores(int anio) {
-    int i=0,sum=0;
-    while (i<anio) {
-        if (esBisiesto(i)) {
-            sum+=366;
-        }
-        else
-            sum+=365;
-        i++;
-    }
-    return sum;
-}
-
-int diasMes(int mes,int anio) {
-    switch (mes) {
-        case 1: case 3: case 5: case 7: case 8: case 10: case 12:
-            return 31;
-            break;
-        case 4: case 6: case 9: case 11:
-            return 30;
-            break;
-        default:
-            if (esBisiesto(anio)) {
-                return 29;
-            }
-            else
-                return 28;
-    }
-}
-
-int diasAnioActual(int dia,int mes,int anio) {
-    if (mes == 1) {
-        return dia;
-    }
-    else {
-        int i = 1,suma=0;
-        while (i<mes) {
-            suma+=diasMes(i,anio);
-            i++;
-        }
-        return suma+=dia;
-    }
-}
 
 int main() {
     int diaActual,mesActual,anioActual;
