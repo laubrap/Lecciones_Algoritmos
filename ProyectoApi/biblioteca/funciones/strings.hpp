@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <math.h>
+#include <stdint.h>
 using namespace std;
 
 //Cuenta la cantidad de caracteres que componen la cadena s.
@@ -70,64 +71,92 @@ int indexOf(string s,char c,int offSet)
 
 /*Descripción: Retorna la posición que ocupa la primera ocurrencia de toSearch dentro
 de la cadena s.*/
-int indexOf(string s,string toSearch) // ok
-{
-   bool primeraLetra;
-   int i=0,j,aux,letrasCoincide,posPrimera=-1;
-
-   if (length(s)>=length(toSearch)) {
-      while (s[i]!='\0') {
-         primeraLetra=true;
-         letrasCoincide=0,j=0,posPrimera=-1,aux=i;
-         while (toSearch[j]!='\0') {
-            if (s[aux]==toSearch[j]) {
-               letrasCoincide++;
-
-               if (primeraLetra==true) {
-                  primeraLetra=false;
-                  posPrimera=aux;
-               }
-
-               if (letrasCoincide==length(toSearch) && substring(s,posPrimera,posPrimera+length(toSearch))==toSearch) {
-                  return posPrimera;
-               }
-            }
-            j++;
-            aux++;
-         }
-         i++;
+int indexOf(string s,string toSearch) {
+   int i=0;
+   while (length(toSearch)+i <= length(s)) {
+      if (substring(s,i,length(toSearch)+i)==toSearch) {
+         return i;
       }
+      i++;
    }
-   return posPrimera;
+   return -1;
+
 }
 
+/*Descripción: Retorna la posición que ocupa la primera ocurrencia de toSearch
+dentro de la cadena s, descartando los primeros offeset caracteres (desplaza-
+miento inicial).*/
 int indexOf(string s,string toSearch,int offset) // ok
 {
-   return 0;
+   return indexOf(substring(s,offset),toSearch);
 }
 
-int lastIndexOf(string s,char c)
-{
-   return 0;
+//Descripción: Retorna la posición de la última ocurrencia del carácter c dentro de s.
+int lastIndexOf(string s,char c){
+   int i=0,index=-1;
+
+   while (s[i]!='\0'){
+      if (s[i]==c){
+         index=i;
+      }
+      i++;
+   }
+   return index;
 }
 
+//
 int indexOfN(string s,char c,int n)
 {
-   return 0;
+   if (charCount(s,c)<n || n==0) {
+      return -1;
+   }
+
+   int i=0,ocurrencia=0;
+   while (s[i]!='\0') {
+      if (s[i]==c) {
+         ocurrencia++;
+         if (ocurrencia==n) {
+            return i;
+         }
+      }
+      i++;
+   }
 }
 
+//Retorna el valor numérico que representa el carácter c.
 int charToInt(char c)
 {
-   return 0;
+   if (c>='0' && c <='9') {
+      return c-'0';
+   }
+   if (c>='A' && c<='Z') {
+      return c-'A' + 10;
+   }
+   if (c>='a' && c<='z') {
+      return c - 'a' + 10;
+   }
+   return -1;
 }
 
+//Descripción: Retorna el carácter que representa al valor de i,
 char intToChar(int i)
 {
-   return 'X';
+   if (i>=0 && i<=9) {
+      return i + '0';
+   }
+   if (i>=10 && i<=36) {
+      return 'A'+i-10;
+   }
+   if (i>=36 && i<=61) {
+      return 'a'+i-36;
+   }
+   return '?';
 }
+
 
 int getDigit(int n,int i)
 {
+   
    return 0;
 }
 
