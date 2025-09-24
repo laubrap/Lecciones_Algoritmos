@@ -3,4 +3,5 @@ project(ProyectoApi)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(ProyectoApi main.cpp)
+add_executable(ProyectoApi main.cpp
+        biblioteca/pruebasStrings.h)

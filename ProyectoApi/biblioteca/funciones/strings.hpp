@@ -153,21 +153,36 @@ char intToChar(int i)
    return '?';
 }
 
-
+//Retorna el i-ésimo dígito del valor de n
 int getDigit(int n,int i)
 {
-   
-   return 0;
+   n=abs(n);
+   int resto,pos=0;
+   while (n!=0) {
+      resto = n%10;
+      if (pos==i) {
+         return resto;
+      }
+      n=n/10;
+      pos++;
+   }
+   return -1;
 }
 
+//Retorna la cantidad de dígitos que contiene el valor de n.
 int digitCount(int n)
 {
-   return 0;
+   int cont=0;
+   while (n!=0) {
+      n=n/10;
+      cont++;
+   }
+   return cont;
 }
 
+//Retorna una cadena de caracteres representando el valor i.
 string intToString(int i)
 {
-   return "";
 }
 
 int stringToInt(string s,int b) // ok
