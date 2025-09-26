@@ -53,6 +53,23 @@ void pruebasStrings() {
 
     //pasa numero a string
     cout << "el numero 123456 a string es: " << intToString(123456) << endl;
+
+    //pasamos un numero a string en cierta base
+    cout << "El string 12AB en base 16 es: " << stringToInt("12AB",16) << endl;
+
+    //el string 1234 pasado a numero en la base 10 es:
+    cout <<  "el string AF82 pasado a numero en la base 10 es: " << stringToInt("AF82") << endl;
+
+    //de char a string
+    string s=charToString('A');
+    cout << "El char 'A' pasado a string es: " << s << " de longitud "<< length(s) << endl;
+
+    //de string a char
+    char c=stringToChar(s);
+    cout << "El string \"A\" pasado a char es: " << c << " y su valor ascii es " << (int)c << endl;
+
+    //de double a string, uso redondeo de 5 decimales
+    cout << "el double 123.4 a string es: " << doubleToString(123.4) << endl;
 }
 
 #endif //PROYECTOAPI_PRUEBASSTRINGS_H

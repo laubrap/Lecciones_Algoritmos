@@ -181,38 +181,86 @@ int digitCount(int n)
 }
 
 //Retorna una cadena de caracteres representando el valor i.
-string intToString(int i)
-{
+string reverseString(string s) {
+   int i=length(s)-1;
+   string aux="";
+   while (i>=0) {
+      aux+=s[i];
+      i--;
+   }
+   return aux;
 }
 
-int stringToInt(string s,int b) // ok
+string intToString(int i)
 {
-   return 0;
+   string aux="";
+   while (i!=0) {
+      aux+=intToChar(i%10);
+      i=i/10;
+   }
+   return reverseString(aux);
+}
+
+int stringToInt(string s, int b) {
+   int acumulador = 0;
+   int potencia = 1;
+   int i = length(s)-1;
+
+   while (i >= 0) {
+      int val = charToInt(s[i]);
+      acumulador += val * potencia;
+      potencia *= b;
+      i--;
+   }
+   return acumulador;
 }
 
 int stringToInt(string s) // ok
 {
-   return 0;
+   int i=0;
+   while (s[i]!='\0') {
+      if (charToInt(s[i]) < 0 || charToInt(s[i]) > 9) {
+         cout << "no se ingresaron todos digitos en base 10, retorno ERROR0CODE = " << endl;
+         return -1;
+      }
+      i++;
+   }
+
+   return stringToInt(s,10);;
 }
 
 string charToString(char c)
 {
-   return "";
+   string s="";
+   return s+=c;
 }
 
 char stringToChar(string s)
 {
-   return 'X';
+   char c=s[0];
+   return c;
 }
 
 string stringToString(string s)
 {
-   return "";
+   return s;
 }
 
-string doubleToString(double d)
-{
-   return "";
+//EPS sirve para eliminar error de entorno con double, que toma mas caracteres de los debidos
+string doubleToString(double d) {
+   int count=0,digito;
+   int parteEntera=int(floor(d));
+   double parteDecimal=d-parteEntera;
+   string decimal="";
+
+   while (parteDecimal>0 && count < 5) {
+      parteDecimal=parteDecimal*10;
+      digito=(int)floor(parteDecimal);
+      decimal+=intToChar(digito);
+      parteDecimal=parteDecimal-digito;
+      count++;
+   }
+   return intToString(parteEntera)+"."+decimal;
 }
 
 double stringToDouble(string s)
@@ -222,7 +270,7 @@ double stringToDouble(string s)
 
 bool isEmpty(string s)
 {
-   return true;
+   return length(s)==1 && charToString(s[0])=="";
 }
 
 bool startsWith(string s,string x)
