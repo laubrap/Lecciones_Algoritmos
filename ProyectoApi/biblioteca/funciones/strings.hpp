@@ -270,7 +270,7 @@ double stringToDouble(string s)
 
 bool isEmpty(string s)
 {
-   return length(s)==1 && charToString(s[0])=="";
+   return s=="";
 }
 
 bool startsWith(string s,string x)
