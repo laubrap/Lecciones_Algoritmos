@@ -14,6 +14,11 @@ struct Persona {
     char nombre[20];
 };
 
+struct Nodo {
+    int numero;
+    Nodo *sgte;
+};
+
 void mostrarVecInt(int vec[],int t) {
     int i = 0;
     while (i<t) {
@@ -78,17 +83,6 @@ void mostrarMatriz(int matriz[][2],int filas, int col) {
     }
 }
 
-int busquedaSecuencialEdad(Persona array[],int tam,int edadBuscada) {
-    int i = 0;
-    while (i<tam) {
-        if (array[i].edad == edadBuscada) {
-            return i;
-        }
-        i++;
-    }
-    return -1;
-}
-
 void errorArray(int err) {
     if (err==0)
         cout << "El array se encuentra lleno " << endl;
@@ -104,6 +98,68 @@ bool insertarELementoAlFinal(int vector[],int tam,int elem) {
         i++;
     }
     return false;
+}
+
+int busquedaSecuencialEdad(Persona array[],int tam,int edadBuscada) {
+    int i = 0;
+    while (i<tam) {
+        if (array[i].edad == edadBuscada) {
+            return i;
+        }
+        i++;
+    }
+    return -1;
+}
+
+int busquedaBinaria(int array[],int tam,int aBuscar) {
+    int final = tam,inicio = 0, central;
+    while (inicio <= final) {
+        central = (inicio + final)/2;
+        if (array[central] == aBuscar) {
+            return central;
+        }
+        if (array[central] > aBuscar) {
+            final = central-1; // ya que si se encuentra en la ultima pos hay bucle
+        }
+        else
+            inicio = central+1;
+    }
+    return -1;
+}
+
+void insertarAlFinal(int numero,Nodo *&inicio) {
+
+    Nodo *nuevo=new Nodo;
+    nuevo->sgte=NULL;
+    nuevo->numero=numero;
+
+    Nodo *paux = inicio;
+    if (paux == NULL) {
+        inicio = nuevo;
+    }
+    else {
+        while (paux->sgte != NULL) {
+            paux = paux ->sgte;
+        }
+        paux -> sgte = nuevo;
+    }
+}
+
+
+bool esPar(int x) {
+    return x%2 == 0;
+}
+
+void insertarPares(char nombreArchivo[], Nodo *&lista) {
+    FILE *f = fopen(nombreArchivo,"rb");
+    int x;
+
+    while (fread(&x,sizeof(int),1,f)) {
+        if (x <= 2000 && x >= 1000 && !esPar(x)) {
+            insertarAlFinal(x,lista);
+        }
+    }
+    fclose(f);
 }
 
 

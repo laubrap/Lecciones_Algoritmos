@@ -9,6 +9,9 @@ int main() {
     mostrarVecInt(vector,10);
     mostrarVecInt(vector2,5);
 
+    int posicion = busquedaBinaria(vector2,5,5);
+    cout << "el elemento buscado " <<vector2[posicion] << "esta en la posicion "<< posicion << endl;
+
     copiarVector(vec,vector,3,10);
     mostrarVecInt(vector,10);
     bool err = insertarELementoAlFinal(vec,3,2231);
@@ -33,12 +36,20 @@ int main() {
         cout << "nombre persona buscada " << array[pos].nombre << endl;
     }
 
-
-
     int matriz[2][2];
 
     llenarMatriz(matriz,2,2);
     mostrarMatriz(matriz,2,2);
+
+    FILE* f;
+    if (f=fopen("hola.txt","wb")) {
+        //si no se puede abrir, fopen evuelve NULL=> f=NULL => false
+        fwrite(vec,sizeof(int),3,f);
+        fclose(f);
+    }
+
+
+
     return 0;
 }
 
