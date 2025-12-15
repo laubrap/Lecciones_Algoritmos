@@ -5,6 +5,17 @@ int main() {
     int vector[10] = {1,2,3,4}; //inicializacion parcial, inicializa con 0 el resto
     int vector2[]={1,3,4,5,6}; //declaracion implicita del tam ==> en este caso es 5
 
+    char *p = "abc";
+    char v[5];
+    cout << strcpy(v,p) << endl;
+
+    cout << vec << endl;
+    cout << &vec << endl;
+    cout << &(vec[0])<< endl;
+
+    cout << vec[0] << endl;
+    cout << *vec << endl;
+
     mostrarVecInt(vec,3);
     mostrarVecInt(vector,10);
     mostrarVecInt(vector2,5);
@@ -47,6 +58,8 @@ int main() {
         fwrite(vec,sizeof(int),3,f);
         fclose(f);
     }
+
+    int a=0,b=12;
 
 
 
